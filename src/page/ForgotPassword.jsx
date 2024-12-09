@@ -2,80 +2,91 @@ import React, { useState } from "react";
 import FormRow from "../ui/FormRow";
 import Button from "../ui/Button";
 import { useRoute } from "../context/RouteContext";
+import { forgetPassword as forgetPasswordApi } from "../service/apiAuth";
 import FormHeading from "../ui/FormHeading";
 import FormContainer from "../ui/FormContainer";
 import Form from "../ui/Form";
 import "../styles/forgotPassword.css";
 
 function ForgotPassword() {
-  const { navigate } = useRoute(); 
+  const { navigate } = useRoute();
   const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({ email: "" });
 
-  const handleSubmit = (e) => {
+  // Input validation
+  const validateEmail = () => {
+    if (!email) {
+      setErrors({ email: "Email is required" });
+      return false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setErrors({ email: "Please enter a valid email address" });
+      return false;
+    }
+    setErrors({ email: "" });
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation
-    if (!email) {
-      setError("Email is required");
-      return;
-    }
+    if (!validateEmail()) return;
 
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
+    setIsLoading(true);
 
-    // Clear error on successful validation
-    setError("");
-    console.log("submitted");
-    alert("Reset instructions sent!");
+    try {
+      await forgetPasswordApi({ email });
+      alert("Password reset instructions sent! Please check your inbox.");
+    } catch (err) {
+      setErrors({
+        email: err.message || "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="forgot-password-container">
-      <FormContainer>
-        <Form onSubmit={handleSubmit}>
-          {/* Heading */}
-          <div className="form-heading">
-            <FormHeading
-              heading="Forgot password?"
-              para="No worries, We’ll send your reset instructions."
-            />
-          </div>
+    <FormContainer>
+      <Form onSubmit={handleSubmit}>
+        <FormHeading
+          heading="Forgot Password?"
+          para="Don't worry, we'll send reset instructions to your email."
+        />
 
-          {/* Input Fields */}
-          <FormRow
-            label="Email"
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            error={error} // Pass error message to FormRow
-          />
+        {/* Email Input */}
+        <FormRow
+          label="Email"
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          error={errors.email} // Pass error message if any
+        />
 
-          {/* Submit Button */}
-          <Button type="submit" className="btn-primary btn-full-width">
-            Submit
-          </Button>
+        {/* Submit Button */}
+        <Button
+          type="submit"
+          variant="success"
+          className="btn-primary"
+          disabled={isLoading}
+        >
+          {isLoading ? "Sending..." : "Submit"}
+        </Button>
 
-          {/* Back to Login Link */}
-          <div className="back-to-login">
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/login");
-              }}
-            >
-              <span>↩️</span> Back to Login
-            </a>
-          </div>
-        </Form>
-      </FormContainer>
-    </div>
+        {/* Back to Login */}
+        <div className="back-to-login">
+          <button
+            type="button"
+            className="btn-link"
+            onClick={() => navigate("/login")}
+          >
+            <span>↩️</span> Back to Login
+          </button>
+        </div>
+      </Form>
+    </FormContainer>
   );
 }
 

@@ -1,0 +1,13 @@
+.form {
+    width: 400px;
+    margin: 107px auto;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    gap: 30px;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.40);
+    background: #FEFEFE;
+    font-family: Plus Jakarta Sans, sans-serif;
+
+}

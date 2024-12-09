@@ -1,19 +1,8 @@
-const formStyle = {
-  width: "400px",
-  margin: "107px auto",
-  display: "flex",
-  flexDirection: "column",
-  padding: "32px",
-  gap: "30px",
-  borderRadius: "22px",
-  border: "1px solid rgba(255, 255, 255, 0.40)",
-  background: "#FEFEFF",
-  fontFamily: "Plus Jakarta Sans, sans-serif",
-};
+import "../styles/Form.css";
 
 function Form({ children, onSubmit }) {
   return (
-    <form style={formStyle} onSubmit={onSubmit}>
+    <form className="form" onSubmit={onSubmit}>
       {children}
     </form>
   );

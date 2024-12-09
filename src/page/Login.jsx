@@ -52,7 +52,7 @@ function Login() {
     setErrors({});
 
     try {
-      const data = await loginApi({ email, password });
+      await loginApi({ email, password });
       alert("Login successful");
 
       login({ email, password });
@@ -100,7 +100,11 @@ function Login() {
           >
             <button
               type="button"
-              className="toggle-password"
+              className={`${
+                errors.email || errors.password
+                  ? "toggle-password-with-error"
+                  : "toggle-password"
+              }`}
               onClick={() => setPasswordVisible((prev) => !prev)}
             >
               {isPasswordVisible ? "Hide" : "Show"}

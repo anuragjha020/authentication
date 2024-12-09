@@ -69,8 +69,7 @@ function Signup() {
     setError("");
 
     try {
-      const data = await signupApi({ userName, email, password });
-      console.log("Signup successful:", data);
+      await signupApi({ userName, email, password });
       alert("Signup successful.");
       navigate("/login");
     } catch (err) {
@@ -126,10 +125,14 @@ function Signup() {
         >
           <button
             type="button"
-            className="toggle-password"
+            className={`${
+              formErrors.email || formErrors.password
+                ? "toggle-password-with-error"
+                : "toggle-password"
+            }`}
             onClick={() => setPasswordVisible((prev) => !prev)}
           >
-            {isPasswordVisible ? "Hide" : "Show"}
+            {isPasswordVisible ? "hide" : "show"}
           </button>
         </FormRow>
 

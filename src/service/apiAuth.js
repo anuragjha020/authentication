@@ -20,9 +20,6 @@ export async function signup({ userName, email, password }) {
 
 //Login user
 export async function login({ email, password }) {
-  console.log("API Email:", email);
-  console.log("API Password:", password); // Add logs to verify payload
-
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,

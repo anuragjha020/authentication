@@ -1,0 +1,10 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #F3F4F7;
+    min-height: 100vh;
+    font-family: Plus Jakarta Sans, sans-serif;
+
+}
