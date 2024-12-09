@@ -5,14 +5,14 @@ import { logout as logoutApi } from "../service/apiAuth";
 
 function Logout({ style }) {
   const { navigate } = useRoute();
-  const { logout } = useAuth(); // Get login function from AuthContext
-  const [isLoading, setIsLoading] = useState(false); // Loading state
-  const [error, setError] = useState(""); // Error state
+  const { logout } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogout = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError(""); // Reset error on new submit
+    setError("");
     try {
       // Attempt to login using the Supabase API
       const data = await logoutApi();

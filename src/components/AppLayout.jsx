@@ -1,13 +1,12 @@
-import { useRoute } from "../context/RouteContext"; // Import the useRoute hook
+import { useRoute } from "../context/RouteContext";
 import Dashboard from "../page/Dashboard";
 import Header from "../ui/Header";
 
 function AppLayout() {
-  const { currentPath } = useRoute(); // Get the current path from context
+  const { currentPath } = useRoute();
 
   return (
     <div>
-      {/* Conditionally render Header based on the current path */}
       {currentPath === "/dashboard" && <Header />}
       <Dashboard />
 

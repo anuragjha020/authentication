@@ -8,7 +8,7 @@ import Form from "../ui/Form";
 import "../styles/forgotPassword.css";
 
 function ForgotPassword() {
-  const { navigate } = useRoute(); // Using the navigate function from RouteContext
+  const { navigate } = useRoute(); 
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 

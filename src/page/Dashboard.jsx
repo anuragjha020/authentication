@@ -1,6 +1,6 @@
 import React from "react";
 import Todo from "../components/Todo";
-import "../styles/dashboard.css"; // Import the external CSS file
+import "../styles/dashboard.css";
 
 function Dashboard() {
   return (

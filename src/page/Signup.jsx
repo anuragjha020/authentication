@@ -8,7 +8,7 @@ import ThirdPartyLogin from "../ui/ThirdPartyLogin";
 import FormContainer from "../ui/FormContainer";
 import Form from "../ui/Form";
 import HorizontalRuleWithText from "../ui/HorizontalRuleWithText";
-import "../styles/signup.css"; // Import the extracted CSS file
+import "../styles/signup.css";
 
 function Signup() {
   const { navigate } = useRoute();

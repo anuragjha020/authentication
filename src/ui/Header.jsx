@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Button from "./Button";
 import LogoImage from "./LogoImage";
 import Logout from "../page/Logout";
-import "../styles/header.css"; // Import the CSS file
+import "../styles/header.css";
 
 function Header() {
   const [isPopupVisible, setPopupVisible] = useState(false);

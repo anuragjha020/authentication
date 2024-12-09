@@ -1,7 +1,7 @@
 import { useRoute } from "../context/RouteContext";
 import Logo from "./Logo";
 import LogoImage from "./LogoImage";
-import "../styles/formHeading.css"; // Import the extracted CSS file
+import "../styles/formHeading.css";
 
 function FormHeading({ para, link, heading, to }) {
   const { navigate } = useRoute();
@@ -17,7 +17,7 @@ function FormHeading({ para, link, heading, to }) {
           className="form-link"
           onClick={(e) => {
             e.preventDefault();
-            navigate(to); // Trigger navigate to login page
+            navigate(to);
           }}
         >
           {link}
