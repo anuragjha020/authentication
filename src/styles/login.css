@@ -1,0 +1,78 @@
+/* Form Container */
+.password-container {
+    position: relative;
+}
+
+/* Password Toggle Button */
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 75%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #717680;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    float: right;
+    margin-top: 5px;
+}
+
+.forgot-password a {
+    text-decoration: none;
+    color: #28a745;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+.btn-login {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-login:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.btn-login:hover:enabled {
+    background-color: #218838;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 4px rgba(40, 167, 69, 0.5);
+}
+
+/* Error Message Styling */
+.error-message {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}

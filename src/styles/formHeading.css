@@ -1,0 +1,30 @@
+/* Main Container */
+.form-heading {
+    text-align: center;
+}
+
+/* Subtext (Paragraph) */
+.form-subtext {
+    color: #717680;
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+/* Link Styling */
+.form-link {
+    color: #34724a;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    text-decoration: none;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}

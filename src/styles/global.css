@@ -1,0 +1,41 @@
+.logo-style {
+    color: #000;
+    text-Align: center;
+    font-Family: Plus Jakarta Sans, sans-serif;
+    font-Size: 34px;
+    font-Style: normal;
+    font-Weight: 600;
+    line-Height: normal;
+    margin: 24px auto 0;
+}
+
+/* css for horizontal rule  */
+
+.horizontal-rule-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    color: #d5d7da;
+}
+
+.horizontal-rule-line {
+    flex: 1;
+    border: 1px solid #d5d7da;
+    margin: 0 10px;
+}
+
+.horizontal-rule-text {
+    white-space: nowrap;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* css for logo-image */
+
+.logo-image-container img {
+    max-height: 40px;
+    width: auto;
+    cursor: pointer;
+}
