@@ -1,16 +1,18 @@
-import { useRoute } from "../context/RouteContext";
-import Dashboard from "../page/Dashboard";
+import { Outlet } from "react-router-dom";
 import Header from "../ui/Header";
+import "../styles/AppLayout.css";
+import Sidebar from "../ui/Sidebar";
 
 function AppLayout() {
-  const { currentPath } = useRoute();
-
   return (
-    <div>
-      {currentPath === "/dashboard" && <Header />}
-      <Dashboard />
-
-      <main></main>
+    <div className="app-layout">
+      <Header />
+      <Sidebar />
+      <main className="main">
+        <div className="container">
+          <Outlet />
+        </div>
+      </main>
     </div>
   );
 }

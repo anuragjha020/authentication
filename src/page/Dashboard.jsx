@@ -1,13 +1,7 @@
-import React from "react";
-import Todo from "../components/Todo";
 import "../styles/dashboard.css";
 
 function Dashboard() {
-  return (
-    <div className="dashboard-container">
-      <Todo />
-    </div>
-  );
+  return <div className="dashboard-container">Welcome to my word!</div>;
 }
 
 export default Dashboard;

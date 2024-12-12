@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useRoute } from "../context/RouteContext";
 import { logout as logoutApi } from "../service/apiAuth";
 
 function Logout({ style }) {
-  const { navigate } = useRoute();
+  const navigate = useNavigate();
   const { logout } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -15,7 +15,7 @@ function Logout({ style }) {
     setError("");
     try {
       // Attempt to login using the Supabase API
-      const data = await logoutApi();
+      await logoutApi();
       alert("logout successful");
 
       // On success, log the user in
@@ -29,7 +29,7 @@ function Logout({ style }) {
   };
   return (
     <div className="popup-item" onClick={handleLogout}>
-      Logout
+      {isLoading ? "Logging out..." : "Logout"}
     </div>
   );
 }

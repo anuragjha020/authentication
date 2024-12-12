@@ -1,9 +1,9 @@
 import React from "react";
 import "../styles/global.css";
 
-function LogoImage({ img }) {
+function LogoImage({ img, onClick }) {
   return (
-    <div className="logo-image-container">
+    <div className="logo-image-container" onClick={onClick}>
       <img src={img} alt="Logo" className="img-fluid" />
     </div>
   );

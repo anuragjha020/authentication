@@ -1,6 +1,6 @@
 import "../styles/Form.css";
 
-function Form({ children, onSubmit }) {
+function FormStyle({ children, onSubmit }) {
   return (
     <form className="form" onSubmit={onSubmit}>
       {children}
@@ -8,4 +8,4 @@ function Form({ children, onSubmit }) {
   );
 }
 
-export default Form;
+export default FormStyle;

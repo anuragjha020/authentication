@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useRoute } from "../context/RouteContext";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import Login from "../page/Login";
 import Signup from "../page/Signup";
@@ -7,43 +6,56 @@ import ForgotPassword from "../page/ForgotPassword";
 import PageNotFound from "../page/PageNotFound";
 import ProtectedRoute from "./ProtectedRoute";
 import AppLayout from "./AppLayout";
+import Dashboard from "../page/Dashboard";
+import Todo from "../components/Todo";
+import Home from "../ui/Home";
+import User from "../ui/User";
 
-const Routes = () => {
-  const { currentPath, navigate } = useRoute();
+const AppRoutes = () => {
   const { isAuthenticated } = useAuth();
 
-  // Automatically redirect to dashboard if user is authenticated and trying to access login or signup
-  useEffect(() => {
-    if (
-      (currentPath === "/login" || currentPath === "/signup") &&
-      isAuthenticated
-    ) {
-      navigate("/dashboard");
-    }
-  }, [currentPath, isAuthenticated, navigate]);
+  return (
+    <Routes>
+      {/* Public Routes */}
+      <Route
+        path="/login"
+        element={
+          isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          isAuthenticated ? <Navigate to="/dashboard" replace /> : <Signup />
+        }
+      />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route
+        path="/"
+        element={
+          isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />
+        }
+      />
 
-  const renderRoute = () => {
-    switch (currentPath) {
-      case "/":
-        return <Login />;
-      case "/login":
-        return <Login />;
-      case "/signup":
-        return <Signup />;
-      case "/forgot-password":
-        return <ForgotPassword />;
-      case "/dashboard":
-        return (
+      {/* Protected Routes */}
+      <Route
+        path="/dashboard"
+        element={
           <ProtectedRoute>
             <AppLayout />
           </ProtectedRoute>
-        );
-      default:
-        return <PageNotFound />;
-    }
-  };
+        }
+      >
+        <Route index element={<Dashboard />} />
+        <Route path="home" element={<Home />} />
+        <Route path="todo" element={<Todo />} />
+        <Route path="user" element={<User />} />
+      </Route>
 
-  return <div>{renderRoute()}</div>;
+      {/* Catch-All Route for 404 */}
+      <Route path="*" element={<PageNotFound />} />
+    </Routes>
+  );
 };
 
-export default Routes;
+export default AppRoutes;

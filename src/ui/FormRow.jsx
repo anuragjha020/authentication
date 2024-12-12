@@ -1,35 +1,27 @@
 import React from "react";
+import { useField } from "formik";
 import "../styles/formRow.css";
 
-function FormRow({
-  label,
-  type,
-  id,
-  placeholder,
-  value,
-  onChange,
-  required,
-  error,
-  children,
-}) {
+const FormRow = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+
   return (
     <div className="form-row-container">
-      <label htmlFor={id} className="form-row-label">
-        {label} {required && <sup>*</sup>}
+      <label htmlFor={props.id || props.name} className="form-row-label">
+        {label}
       </label>
       <input
-        type={type}
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        className={`form-row-input ${error ? "is-invalid" : ""}`}
-        required={false}
+        {...field}
+        {...props}
+        className={`form-row-input ${
+          meta.touched && meta.error ? "is-invalid" : ""
+        }`}
       />
-      {error && <div className="invalid-feedback">{error}</div>}
-      {children}
+      {meta.touched && meta.error && (
+        <div className="invalid-feedback">{meta.error}</div>
+      )}
     </div>
   );
-}
+};
 
 export default FormRow;

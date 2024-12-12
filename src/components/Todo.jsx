@@ -19,7 +19,7 @@ const Todo = () => {
   const handleChange = (e) => setTask(e.target.value);
 
   const addTask = () => {
-    if (task.trim() === "") return;
+    if (!task.trim()) return;
     const newTodo = { id: Date.now(), text: task, completed: false };
     setTodos([...todos, newTodo]);
     setTask("");
@@ -31,7 +31,7 @@ const Todo = () => {
   };
 
   const saveEditedTask = () => {
-    if (task.trim() === "") return;
+    if (!task.trim()) return;
     setTodos(
       todos.map((todo) => (todo.id === editId ? { ...todo, text: task } : todo))
     );
@@ -79,60 +79,72 @@ const Todo = () => {
           </button>
         </div>
 
-        <div className="filter-buttons">
-          <button
-            className="btn btn-secondary"
-            onClick={() => setFilter("all")}
-          >
-            All
-          </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => setFilter("active")}
-          >
-            Active
-          </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => setFilter("completed")}
-          >
-            Completed
-          </button>
-        </div>
-
-        <ul className="todo-list">
-          {filteredTodos.map((todo) => (
-            <li
-              key={todo.id}
-              className={`todo-item ${todo.completed ? "completed-task" : ""}`}
-            >
-              <span
-                className={`todo-text ${todo.completed ? "strikethrough" : ""}`}
-                onClick={() => toggleComplete(todo.id)}
+        {todos.length > 0 ? (
+          <>
+            {" "}
+            <div className="filter-buttons">
+              <button
+                className="btn btn-secondary"
+                onClick={() => setFilter("all")}
               >
-                {todo.text}
-              </span>
-              <div className="action-buttons">
-                <button
-                  className="btn btn-warning"
-                  onClick={() => editTask(todo.id, todo.text)}
+                All
+              </button>
+              <button
+                className="btn btn-secondary"
+                onClick={() => setFilter("active")}
+              >
+                Active
+              </button>
+              <button
+                className="btn btn-secondary"
+                onClick={() => setFilter("completed")}
+              >
+                Completed
+              </button>
+            </div>
+            <ul className="todo-list">
+              {filteredTodos.map((todo) => (
+                <li
+                  key={todo.id}
+                  className={`todo-item ${
+                    todo.completed ? "completed-task" : ""
+                  }`}
                 >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteTask(todo.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        <button className="btn btn-danger btn-clear" onClick={clearAllTasks}>
-          Clear All
-        </button>
+                  <span
+                    className={`todo-text ${
+                      todo.completed ? "strikethrough" : ""
+                    }`}
+                    onClick={() => toggleComplete(todo.id)}
+                  >
+                    {todo.text}
+                  </span>
+                  <div className="action-buttons">
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => editTask(todo.id, todo.text)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteTask(todo.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <button
+              className="btn btn-danger btn-clear"
+              onClick={clearAllTasks}
+            >
+              Clear All
+            </button>
+          </>
+        ) : (
+          <div className="todo-title">No task to show</div>
+        )}
       </div>
     </div>
   );

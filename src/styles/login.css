@@ -7,7 +7,7 @@
 .toggle-password {
     position: absolute;
     right: 10px;
-    top: 73%;
+    top: 50%;
         transform: translateY(-50%);
         background: none;
         border: none;
@@ -19,7 +19,7 @@
     .toggle-password-with-error {
         position: absolute;
         right: 10px;
-        top: 53%;
+        top: 42%;
         transform: translateY(-50%);
         background: none;
         border: none;
@@ -34,12 +34,13 @@
     margin-top: 5px;
 }
 
-.forgot-password a {
+.forgot-password .btn-link {
     text-decoration: none;
     color: #28a745;
 }
 
-.forgot-password a:hover {
+.forgot-password .btn-link:hover {
+    color: #28a745;
     text-decoration: underline;
 }
 

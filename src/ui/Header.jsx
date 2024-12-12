@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import Button from "./Button";
-import LogoImage from "./LogoImage";
 import Logout from "../page/Logout";
 import "../styles/header.css";
 
@@ -28,7 +27,7 @@ function Header() {
   return (
     <header className="header">
       <div className="header-content">
-        <LogoImage img="/Logo-image.png" className="logo" />
+        {/* <LogoImage img="/Logo-image.png" className="logo" /> */}
 
         {/* Navigation Links */}
         <nav className="nav-links">
@@ -57,10 +56,9 @@ function Header() {
 
           {/* Avatar with Popup */}
           <div className="avatar" ref={avatarRef} onClick={togglePopup}>
-            <img src="user.png" alt="user icon" className="avatar-icon" />
+            <img src="/user.png" alt="user icon" className="avatar-icon" />
             {isPopupVisible && (
               <div className="popup-menu">
-                <div className="popup-item">User</div>
                 <Logout className="popup-item" />
               </div>
             )}
