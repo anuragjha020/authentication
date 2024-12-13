@@ -22,7 +22,7 @@
 .nav-link:hover,
 .nav-link:active,
 .nav-link.active {
-    color: green;
+    color: #34724a;
     background-color: #f1f1f1;
     border-radius: 2px;
 }
